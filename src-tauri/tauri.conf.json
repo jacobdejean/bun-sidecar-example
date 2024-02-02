@@ -1,0 +1,48 @@
+{
+  "build": {
+    "beforeDevCommand": "bun run dev",
+    "beforeBuildCommand": "bun run build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "bun-sidecar-example",
+    "version": "0.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true,
+        "sidecar": true,
+        "scope": [{ "name": "../bin/bun-sidecar", "sidecar": true }]
+      }
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "externalBin": ["../bin/bun-sidecar"],
+      "identifier": "com.tauri.bun-sidecar-example",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ]
+    },
+    "security": {
+      "csp": null
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "bun-sidecar-example",
+        "width": 800,
+        "height": 600
+      }
+    ]
+  }
+}
