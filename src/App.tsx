@@ -5,9 +5,7 @@ import { Command } from "@tauri-apps/api/shell";
 import "./App.css";
 
 async function callBunShell(message: string) {
-  const command = Command.sidecar("../bin/bun-sidecar", [
-    `--message=${message}`,
-  ]);
+  const command = Command.sidecar("../bin/bun-sidecar", message);
   const output = await command.execute();
   console.log(output);
   return output.stdout;
