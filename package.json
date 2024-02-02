@@ -8,8 +8,13 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "dev:bun": "bun dev ./src-bun/index.tsx",
+    "dev:bun": "bun run ./src-bun/index.ts",
     "build:bun": "bun run ./tooling/build-bun.ts"
+  },
+  "config": {
+    "build:bun": {
+      "output": "bun-sidecar"
+    }
   },
   "dependencies": {
     "@tauri-apps/api": "^1.5.2",
