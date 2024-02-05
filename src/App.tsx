@@ -8,7 +8,6 @@ async function callBunShell(message: string) {
   const start = Date.now();
   const command = Command.sidecar("../bin/bun-sidecar", [message]);
   const output = await command.execute();
-  console.log("bs-stdout", output.stdout);
   const end = Date.now();
   return {
     time: end - start,
