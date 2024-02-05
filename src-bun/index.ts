@@ -1,11 +1,11 @@
 import { $ } from "bun";
 
+// Bun.argv includes raw args passed to process,
+// our args are at the end
+// [ "bun", "/$bunfs/root/bun-sidecar", "asdf" ]
 const args = Bun.argv;
 
-await $`echo "Message: ${args.join(" ")}"`;
-
-const messageArg = args.find((arg) => arg.startsWith("--message"));
-const message = messageArg?.split("=")[1];
+const message = args[args.length - 1];
 
 if (!message) {
   await $`echo "No message provided!`;
