@@ -1,6 +1,9 @@
+#!/usr/bin/env bun
+
 import appPackage from "../package.json";
 import { $ } from "bun";
 
+const module = appPackage.config["build:bun"].module;
 const binaryName = appPackage.config["build:bun"].output;
 
 // clean old build
@@ -8,7 +11,6 @@ await $`rm -rf ./bin`;
 await $`mkdir ./bin`;
 
 // compile typescript module
-const module = `./src-bun/index.ts`;
 const binFile = `./bin/${binaryName}`;
 const build = await $`bun build ${module} --compile --outfile ${binFile}`;
 
