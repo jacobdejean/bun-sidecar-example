@@ -13,6 +13,7 @@
   },
   "config": {
     "build:bun": {
+      "module": "./src-bun/index.ts",
       "output": "bun-sidecar"
     }
   },
