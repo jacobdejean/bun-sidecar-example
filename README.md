@@ -7,7 +7,7 @@ Bun does many things, so it's important to clarify how it is being used in this 
 * compiler
 * runtime*
 
-When running `bun run tauri dev` you are not getting the bun runtime. You are getting the Bun PM to execute the dev script. In this example, the runtime is limited to the `src-bun/index.ts` module and the `tooling/build-bun.ts` script.
+*When running `bun run tauri dev` you are not getting the bun runtime. You are getting the Bun PM to execute the dev script. In this example, the runtime is limited to the `src-bun/index.ts` module and the `tooling/build-bun.ts` script.
 
 To run the dev server with Bun runtime, you would need to include the `--bun` flag unless otherwise indicated via `#!/usr/bin/env bun`. This does not appear to be compatible with Tauri, and would be pretty useless anyway. 
 
