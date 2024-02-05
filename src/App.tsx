@@ -1,25 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
 import { Command } from "@tauri-apps/api/shell";
 import "./App.css";
 
 async function callBunShell(message: string) {
-  const command = Command.sidecar("../bin/bun-sidecar", message);
+  const start = Date.now();
+  const command = Command.sidecar("../bin/bun-sidecar", [message]);
   const output = await command.execute();
-  console.log(output);
-  return output.stdout;
+  console.log("bs-stdout", output.stdout);
+  const end = Date.now();
+  return {
+    time: end - start,
+    stdout: output.stdout,
+  };
 }
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [bunMsg, setBunMsg] = useState("");
   const [name, setName] = useState("");
+  const bsTime = useRef(0);
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
     setGreetMsg(await invoke("greet", { name }));
-    setBunMsg(await callBunShell("Hello from the sidecar"));
+
+    const { time, stdout } = await callBunShell(name);
+
+    setBunMsg(stdout);
+    bsTime.current = time;
   }
 
   return (
@@ -56,7 +66,12 @@ function App() {
       </form>
 
       <p>{greetMsg}</p>
-      <p>{bunMsg}</p>
+      {bunMsg.length > 0 && (
+        <>
+          <p>Started bun shell in {bsTime.current}ms</p>
+          <p>{bunMsg}</p>
+        </>
+      )}
     </div>
   );
 }
