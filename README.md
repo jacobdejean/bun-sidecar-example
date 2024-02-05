@@ -58,7 +58,12 @@ const output = await command.execute();
 Tauri also supports invoking sidecars from Rust, you can find a code snippet here:
 https://tauri.app/v1/guides/building/sidecar/#running-it-from-rust
 
+In this example, we are passing a message to the script. If you run `bun run tauri dev`, greet the app with a name and you see the script's response appear below Rust's greeting. 
 
+### Performance
+Along with the echo, the execution time is displayed. Performance-wise, on a M2 Mac Mini, I see an average first-call of ~90ms and ~25ms subsequent calls. My assumption here is that Tauri does not load the binary into memory until `Command.sidecar` is called, resulting in extra time reading the file system. 
+
+For comparison, I have not personally tested the execution time of a node module compiled with `pkg`. Once I test this I will update this section. Either way, the benefit of using Bun here is not limited to its performance. 
 
 
 ## Embedding other files
