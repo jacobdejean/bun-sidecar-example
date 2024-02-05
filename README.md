@@ -31,7 +31,5 @@ The following has been added to `package.json` to support the `build-bun` script
 }
 ```
 
-`tauri.conf.json` has also been modified to support external binaries.See https://tauri.app/v1/guides/building/sidecar/
-
-
+`tauri.conf.json` has also been modified to support external binaries. See https://tauri.app/v1/guides/building/sidecar/
 
